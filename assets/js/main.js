@@ -256,7 +256,7 @@ loadMoreButton.addEventListener("click", () => {
     setTimeout(() => {
       loadMoreButton.style.width = "2.5rem";
       loadMoreButton.style.background =
-        "url(../assets/imgs/favicon.svg) center / contain no-repeat";
+        "url(./assets/imgs/favicon.svg) center / contain no-repeat";
       buttonSpan.style.opacity = "0";
     }, 1000);
 
