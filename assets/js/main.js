@@ -222,13 +222,15 @@ searchButton.addEventListener("click", async () => {
     inputBox.value = "";
     pokemonListElement.innerHTML = "";
     const searchByNumber = await makeRequest(numberInput - 1, 1);
-    console.log(searchByNumber);
     if (!searchByNumber) {
       if (notFoundedAlert.classList.contains("hidden")) {
         notFoundedAlert.classList.remove("hidden");
       }
     } else if (!notFoundedAlert.classList.contains("hidden"))
       notFoundedAlert.classList.add("hidden");
+
+    if (!buttonWrapper.classList.contains("hidden"))
+      buttonWrapper.classList.add("hidden");
   } else {
     isSearching = false;
     if (!notFoundedAlert.classList.contains("hidden"))
