@@ -135,11 +135,11 @@ const convertPokemonToTag = (pokemon) => {
 
 // Requisita dados da API e retorna um array de objetos:
 const makeRequest = async (offset, limit) => {
-  await pokeApi
-    .getPokemonData(offset, limit)
-    .then((pokemon = []) =>
-      pokemon.map((pokemon) => convertPokemonToTag(pokemon))
-    );
+  const pokemonData = await pokeApi.getPokemonData(offset, limit);
+  if (pokemonData.length > 0) {
+    pokemonData.map((pokemon) => convertPokemonToTag(pokemon));
+    return true;
+  } else return false;
 };
 
 makeRequest(0, initialOffset);
@@ -209,10 +209,8 @@ searchButton.addEventListener("click", async () => {
 
       if (!notFoundedAlert.classList.contains("hidden"))
         notFoundedAlert.classList.add("hidden");
-    } else {
-      if (notFoundedAlert.classList.contains("hidden"))
-        notFoundedAlert.classList.remove("hidden");
-    }
+    } else if (notFoundedAlert.classList.contains("hidden"))
+      notFoundedAlert.classList.remove("hidden");
 
     if (searchList.length > 19) {
       if (buttonWrapper.classList.contains("hidden"))
@@ -223,10 +221,14 @@ searchButton.addEventListener("click", async () => {
     const numberInput = parseInt(searchText);
     inputBox.value = "";
     pokemonListElement.innerHTML = "";
-    makeRequest(numberInput - 1, 1);
-
-    if (!buttonWrapper.classList.contains("hidden"))
-      buttonWrapper.classList.add("hidden");
+    const searchByNumber = await makeRequest(numberInput - 1, 1);
+    console.log(searchByNumber);
+    if (!searchByNumber) {
+      if (notFoundedAlert.classList.contains("hidden")) {
+        notFoundedAlert.classList.remove("hidden");
+      }
+    } else if (!notFoundedAlert.classList.contains("hidden"))
+      notFoundedAlert.classList.add("hidden");
   } else {
     isSearching = false;
     if (!notFoundedAlert.classList.contains("hidden"))
