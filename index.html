@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!--Varela Round Font-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap">
+
+	<!--Icon-->
+	<link rel="shortcut icon" href="assets/imgs/favicon.svg" type="image/x-icon">
+
+	<!--Normalize CSS-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+		integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<!--CSS-->
+	<link rel="stylesheet" href="assets/styles/global.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+	<script src="src/Components/PokemonCard.js" defer></script>
+	<title>Pokédex - Component</title>
+</head>
+
+<body>
+	<div id="background" class="crt"></div>
+	<nav class="navbar fixed-top bg-body-primary p-1">
+		<div class="container-fluid justify-content-center">
+			<div class="myLogo-wrapper">
+				<img id="myLogo" src="" alt="my logo">
+			</div>
+			<a href="index.html" class="navbar-brand m-0">
+				<img id="poke-logo" class="logo-up-down" src="assets/imgs/pokeLogo.svg" alt="pokedex logo">
+			</a>
+			<form role="search" class="d-flex input-group-sm w-75">
+				<input type="text" id="inputBox" class="form-control rounded-pill me-2 text-light w-100" type="search"
+					placeholder="Buscar pokémons...">
+				<button id="btn-search"
+					class="btn btn-light btn-sm fw-bold d-flex align-items-center justify-content-center rounded-circle"
+					type="button">
+				</button>
+			</form>
+		</div>
+	</nav>
+	<section class="content mx-auto">
+		<ol id="pokemonList" class="pokemons"></ol>
+		<div class="button-wrapper">
+			<span>Clique aqui!</span>
+			<button id="load-more">
+				<span>Carregar...</span>
+			</button>
+		</div>
+	</section>
+	<div id="not-founded" class="hidden">
+		<span>Nenhum Pokémon foi encontrado!</span>
+		<img src="assets/imgs/not-founded.png" alt="not-founded">
+	</div>
+	<footer class="footer">
+		<span>Projeto educacional desenvolvido por: Thiago de Oliveira Miranda</span>
+		<span>©2023 Pokémon. ©1995 - 2023 Nintendo/Creatures Inc./GAME FREAK inc.</span>
+	</footer>
+	<script src="src/models/pokemonBasic-model.js"></script>
+	<script src="assets/js/service-api.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+		integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

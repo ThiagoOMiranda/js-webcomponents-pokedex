@@ -1,0 +1,411 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+  font-family: "Varela Round", sans-serif;
+  font-size: 16px;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(81, 153, 211);
+  overflow-y: scroll;
+}
+
+#background {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(
+      to bottom,
+      rgb(81, 153, 211) 10%,
+      transparent
+    ),
+    url(../imgs/Bckg_00.png);
+  background-color: rgb(81, 153, 211);
+  background-attachment: fixed;
+  background-size: auto 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -2;
+  -webkit-transition: background 1s ease-in-out;
+  -moz-transition: background 1s ease-in-out;
+  transition: background 1s ease-in-out;
+}
+
+.crt::before {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+    linear-gradient(
+      90deg,
+      rgba(255, 0, 0, 0.06),
+      rgba(0, 255, 0, 0.02),
+      rgba(0, 0, 255, 0.06)
+    );
+  background-size: 100% 4px, 3px 100%;
+  pointer-events: none;
+  z-index: -2;
+}
+
+nav.navbar {
+  background: #ddd url(../imgs/pokePattern_02.svg) center / 30px repeat;
+  filter: drop-shadow(2px 0px 5px rgba(0, 0, 0, 0.8));
+  border-bottom: 3px solid #fff;
+}
+
+nav.navbar > div {
+  padding-top: 3rem;
+}
+
+a.navbar-brand {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+a.navbar-brand img {
+  height: 2.25rem;
+  transform-origin: center;
+  filter: drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.5));
+}
+
+.logo-up-down {
+  animation: up-down 2s infinite alternate;
+}
+
+@keyframes up-down {
+  0% {
+    transform: translate(0%, -3%) rotate(-2deg);
+    transform-origin: left;
+  }
+  50% {
+    transform: translate(0%, 0%) rotate(0deg);
+    transform-origin: center;
+  }
+  100% {
+    transform: translate(0%, 3%) rotate(2deg);
+    transform-origin: right;
+  }
+}
+
+input.form-control {
+  background-color: rgba(0, 0, 0, 0.5);
+  outline: none;
+  border: none;
+  box-shadow: inset 0px 10px 15px -3px rgba(0, 0, 0, 0.5);
+}
+
+input.form-control:focus {
+  background-color: rgba(0, 0, 0, 0.5);
+  outline: none;
+  border: none;
+  box-shadow: inset 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+input.form-control::placeholder {
+  color: #fff;
+  font-weight: bold;
+}
+
+button#btn-search {
+  width: 29px;
+  height: 29px;
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.75));
+  background-image: url(../imgs/favicon.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  outline: 3px solid black;
+  outline-offset: -3px;
+}
+
+button#btn-search:active {
+  filter: saturate(0.5);
+}
+
+section.content {
+  position: relative;
+  width: 100vw;
+  margin-top: 5.463rem;
+  padding: 1.5rem;
+  padding-bottom: 4.313rem;
+}
+
+.pokemons {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 0;
+}
+
+pokemon-card {
+  margin: 0.5rem;
+  transition: transform 0.2s;
+}
+
+pokemon-card:hover {
+  transform: scale(1.1);
+}
+
+.button-wrapper {
+  bottom: calc(-3rem + 2.813rem);
+  width: 100%;
+  height: 7rem;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 0.5rem;
+  transition: all 0.2s ease;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(204, 204, 204, 0) 100%
+  );
+}
+
+.button-wrapper > span {
+  color: white;
+  font-weight: bold;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
+  padding: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 0.5rem 0.5rem 0 0;
+  transition: opacity 0.3s;
+  opacity: 1;
+}
+
+button#load-more {
+  height: 2.5rem;
+  width: 2.5rem;
+  background: url(../imgs/favicon.svg) center / contain no-repeat;
+  outline: 3px solid black;
+  outline-offset: -3px;
+  border-radius: 2rem;
+  filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.8));
+  cursor: pointer;
+  transition: width 0.3s;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button#load-more > span {
+  font-size: larger;
+  font-weight: bolder;
+  color: #ddd;
+  opacity: 0;
+  transition: opacity 0.5s;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
+}
+
+button#load-more:active {
+  filter: saturate(0.5);
+}
+
+#not-founded {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  z-index: 9999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 2s;
+  text-align: center;
+}
+
+#not-founded > span {
+  font-size: x-large;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+}
+
+#not-founded > img {
+  width: 55%;
+  height: 55%;
+  filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 1));
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* FOOTER */
+footer.footer {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  text-align: center;
+  width: 100vw;
+  height: 45px;
+  background-color: #eee;
+  box-shadow: 0px -2px 7px 0px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+footer.footer > span {
+  font-size: 0.625rem;
+  color: #444;
+}
+
+.myLogo-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+}
+
+.myLogo-wrapper::before {
+  content: "";
+}
+
+#myLogo {
+  content: url(../imgs/cube.svg);
+  height: 3rem;
+  width: auto;
+  filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 1));
+  z-index: 3;
+}
+
+@media screen and (orientation: landscape) {
+  #background {
+    background-size: 100% 100%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .crt::before {
+    background-size: 100% 3px, 1px 100%;
+  }
+
+  .pokemons {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  nav.navbar > div {
+    padding-top: 0 !important;
+    justify-content: end !important;
+  }
+
+  a.navbar-brand img {
+    height: 2.875rem;
+  }
+
+  .myLogo-wrapper {
+    background-color: rgba(100, 100, 100, 0.3);
+    padding: 0.4rem;
+    cursor: pointer;
+  }
+
+  .myLogo-wrapper::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    -webkit-backdrop-filter: blur(10px);
+    -moz-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-bottom-right-radius: 0.5rem;
+    border-bottom: 2px solid #eee;
+  }
+
+  #myLogo {
+    height: 3.75rem;
+    width: auto;
+    content: url(../imgs/thiagodev.svg);
+  }
+
+  form.input-group-sm {
+    margin-right: 3rem;
+    width: unset !important;
+  }
+
+  #not-founded {
+    width: 750px;
+  }
+
+  #not-founded > img {
+    width: 35%;
+    height: 35%;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .pokemons {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  section.content {
+    max-width: 1024px;
+    margin-top: 2.463rem;
+    padding-bottom: 3.375rem;
+  }
+
+  footer.footer {
+    height: 30px;
+  }
+
+  footer.footer {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .footer :first-child {
+    margin-right: 2rem;
+  }
+
+  footer.footer > span {
+    font-size: 0.875rem;
+  }
+
+  .button-wrapper {
+    bottom: calc(-3rem + 1.875rem);
+  }
+
+  .button-wrapper > span {
+    content: Passe o mouse aqui!;
+  }
+
+  button#load-more > span {
+    transition: opacity 0.3s;
+  }
+}
+
+.hidden {
+  display: none !important;
+}
